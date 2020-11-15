@@ -27,13 +27,12 @@
 // ]
 
 window.centralesInfo = [
-
   {
-    nombre: "Ni idea",
-    ip: "155125515"
+    nombre: "ariel puto",
+    ip: "localhost:8001"
   },
   {
-    nombre: "Fincas del Sur",
-    ip: `localhost`,
+    nombre: "fincas del sur",
+    ip: "localhost:8000"
   },
 ];

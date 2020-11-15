@@ -11,18 +11,49 @@ import {
 const initialState = {
   isFetching: false,
   isGetting: false,
-  currentEntity: null,
-  entities: null,
+  currentCono: null,
+  entities: [],
   fetchListErrorMessage: null,
-  fetchConoErrorMessage: null,
 };
+
+function ValidateCentral(state, action, isLoading) {
+  const entities = [...state.entities];
+  const central = entities.find((central) => {
+    console.log(central)
+    return central.nombreCentral === action.payload.nombreCentral;    
+  });
+
+  if (central === undefined) {
+    console.log("push")
+    entities.push({
+      ...action.payload,
+      isFetching: isLoading,
+      fetchListErrorMessage: null,
+    });
+  } else {
+    let indexCentral = entities.indexOf(central);
+    entities.splice(indexCentral, 1, {
+      ...action.payload,
+      isFetching: isLoading,
+      fetchListErrorMessage: null,
+    });
+  }
+  return entities;
+}
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_LIST_FULFILL:
-      return Object.assign({}, state, { entities: [action.payload] });
+      return {
+        ...state,
+        entities: ValidateCentral(state, action, false),
+      };
     case FETCH_LIST_PENDING:
-      return { ...state, isFetching: true };
+      return {
+        ...state,
+        isFetching: true,
+        entities: ValidateCentral(state, action, true),
+      };
     case FETCH_LIST_REJECT:
       return {
         ...state,
@@ -30,7 +61,11 @@ export default (state = initialState, action) => {
         fetchListErrorMessage: action.payload,
       };
     case FETCH_CONO_FULFILL:
-      return {...state, isGetting: false, currentEntity: action.payload}
+      return {
+        ...state,
+        currentCono: action.payload,
+        isFetching: false,
+      };
     case FETCH_CONO_PENDING:
       return { ...state, isGetting: true };
     case FETCH_CONO_REJECT:
