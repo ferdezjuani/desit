@@ -4,13 +4,17 @@ import { useSelector } from "react-redux";
 import { ListGroup } from "react-bootstrap";
 
 function NoteDetails() {
-  const currentCentral = useSelector((state) => state.centrales.currentCono);
+  const currentCono = useSelector((state) => state.centrales.currentCono);
+
+  const getCono = (id) => {
+    return currentCono.filter((cono) => cono.id === id);
+  };
 
   return (
     <>
       <Navbar title="DETALLES" />
 
-      {currentCentral.map((cono) => (
+      {getCono(3).map((cono) => (
         <ListGroup
           horizontal="true"
           variant="flush"

@@ -11,7 +11,7 @@ import {
 const initialState = {
   isFetching: false,
   isGetting: false,
-  currentCono: null,
+  currentCono: [],
   entities: [],
   fetchListErrorMessage: null,
 };
@@ -19,27 +19,26 @@ const initialState = {
 function ValidateCentral(state, action, isLoading) {
   const entities = [...state.entities];
   const central = entities.find((central) => {
-    console.log(central)
     return central.nombreCentral === action.payload.nombreCentral;    
   });
 
   if (central === undefined) {
-    console.log("push")
     entities.push({
       ...action.payload,
       isFetching: isLoading,
-      fetchListErrorMessage: null,
+      fetchCentralErrorMessage: null,
     });
   } else {
     let indexCentral = entities.indexOf(central);
     entities.splice(indexCentral, 1, {
       ...action.payload,
       isFetching: isLoading,
-      fetchListErrorMessage: null,
+      fetchCentralErrorMessage: null,
     });
   }
   return entities;
 }
+
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -64,7 +63,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         currentCono: action.payload,
-        isFetching: false,
+        isGetting: false,
       };
     case FETCH_CONO_PENDING:
       return { ...state, isGetting: true };

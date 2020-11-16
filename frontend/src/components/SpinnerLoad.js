@@ -6,8 +6,8 @@ const SpinnerLoad = () => {
   return (
     <div>
       <Spinner
-        animation="grow"
-        variant="secondary"
+        animation="border"
+        variant="warning"
       />
     </div>
   );

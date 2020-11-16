@@ -13,29 +13,26 @@ function NotesList() {
     return state.centrales;
   });
 
-  //let obtenerNombreCentrales = centrales.entities.nombres;
-  //let obtenerConos = centrales.entities.conos;
-  //let obtenerArrayFechas = obtenerConos.map((arrayFechas) => arrayFechas.date);
-
   return (
     <>
       <Navbar title="LISTADO CENTRALES" />
-      {/* {obtenerNombreCentrales === null || undefined ? (
+      {centrales.fetchListErrorMessage !== null ? (
         <details open>
           <summary style={{ color: "red" }}>
             {centrales.fetchListErrorMessage}
           </summary>
         </details>
       ) : (
-        obtenerNombreCentrales.map((nombreCentral) => (
+        centrales.entities.map((central) => (
           <details open>
             <summary>
-              Central: {nombreCentral} - Fecha de actualizacion: {obtenerArrayFechas}
+              Central: {central.nombreCentral} - Fecha de actualizacion:{" "}
+              {central.date}
             </summary>
-            {obtenerConos === undefined || null ? (
+            {central.conos === undefined ? (
               <SpinnerLoad />
             ) : (
-              obtenerConos.map((cono) => (
+              central.conos.map((cono, myKey) => (
                 <div className="faq__content">
                   <Table
                     striped
@@ -49,7 +46,7 @@ function NotesList() {
                       marginRight: "auto",
                     }}
                   >
-                    <thead key={cono}>
+                    <thead key={cono.idMesh}>
                       <tr>
                         <th>idComunicador</th>
                         <th>IMEI</th>
@@ -60,16 +57,20 @@ function NotesList() {
                       </tr>
                     </thead>
                     <tbody key={cono.id}>
-                      <td>{cono.idComunicador}</td>
-                      <td>{cono.idMesh}</td>
-                      <td>{cono.descripcion}</td>
-                      <td>{cono.codPanel}</td>
-                      <td>{cono.idMesh}</td>
-                      <td>
-                        <Link to={`/central/${nombreCentral}/${cono.id}`}>
-                          <VisibilityIcon className="view_icon" />
-                        </Link>
-                      </td>
+                      <tr>
+                        <td>{cono.idComunicador}</td>
+                        <td>{cono.idMesh}</td>
+                        <td>{cono.descripcion}</td>
+                        <td>{cono.codPanel}</td>
+                        <td>{cono.idMesh}</td>
+                        <td>
+                          <Link
+                            to={`/central/${central.nombreCentral}/${cono.id}`}
+                          >
+                            <VisibilityIcon className="view_icon" />
+                          </Link>
+                        </td>
+                      </tr>
                     </tbody>
                   </Table>
                 </div>
@@ -77,7 +78,7 @@ function NotesList() {
             )}
           </details>
         ))
-      )} */}
+      )}
     </>
   );
 }
