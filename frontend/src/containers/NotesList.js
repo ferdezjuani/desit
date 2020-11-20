@@ -7,11 +7,17 @@ import Navbar from "../components/Navbar";
 import SpinnerLoad from "../components/SpinnerLoad";
 import "./NotesList.css";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import { Alert } from "react-bootstrap";
 
 function NotesList() {
   const centrales = useSelector((state) => {
     return state.centrales;
   });
+
+  let errorCentrales = centrales.entities.map(
+    (error) => error.fetchCentralErrorMessage
+  );
+  console.log(errorCentrales);
 
   return (
     <>
@@ -26,11 +32,23 @@ function NotesList() {
         centrales.entities.map((central) => (
           <details open>
             <summary>
-              Central: {central.nombreCentral} - Fecha de actualizacion:{" "}
-              {central.date}
+              CENTRAL: {central.nombreCentral}
+              {central.date !== undefined ? (
+                <p>FECHA DE ACTUALIZACION: {central.date}</p>
+              ) : (
+                <p></p>
+              )}
             </summary>
             {central.conos === undefined ? (
-              <SpinnerLoad />
+              <>
+                {centrales.fetchCentralErrorMessage !== null ? (
+                  <Alert variant="danger">
+                    {centrales.fetchCentralErrorMessage}
+                  </Alert>
+                ) : (
+                  <SpinnerLoad />
+                )}
+              </>
             ) : (
               central.conos.map((cono, myKey) => (
                 <div className="faq__content">

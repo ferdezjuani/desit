@@ -28,11 +28,11 @@
 
 window.centralesInfo = [
   {
-    nombre: "calera",
+    nombre: "ARIEL PUTO",
     ip: "localhost:8001"
   },
   {
-    nombre: "fincas del sur",
+    nombre: "FUNCAS DEL SUR",
     ip: "localhost:8000"
   },
 ];

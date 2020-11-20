@@ -7,10 +7,10 @@
 } */
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 400;
-  background: #0B2647;
+  background: #0b2647;
   color: white;
   line-height: 1.5;
   letter-spacing: 0.5px;
@@ -40,28 +40,36 @@ summary {
   position: relative;
 }
 details[open] summary ~ * {
-  animation: sweep .5s ease-in-out;
+  animation: sweep 0.5s ease-in-out;
 }
 @keyframes sweep {
-  0%    {opacity: 0; margin-top: -10px}
-  100%  {opacity: 1; margin-top: 0px}
+  0% {
+    opacity: 0;
+    margin-top: -10px;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0px;
+  }
 }
 details > summary::after {
   position: absolute;
   content: "+";
   right: 20px;
+  bottom: 20px;
 }
 details[open] > summary::after {
   position: absolute;
   content: "-";
   right: 20px;
+  bottom: 20px;
 }
 details > summary::-webkit-details-marker {
   display: none;
 }
 
-.view_icon:hover{
-  color:inherit; 
+.view_icon:hover {
+  color: inherit;
   color: rgb(15, 106, 136);
   cursor: pointer;
 }

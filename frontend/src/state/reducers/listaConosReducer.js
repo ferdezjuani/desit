@@ -14,12 +14,13 @@ const initialState = {
   currentCono: [],
   entities: [],
   fetchListErrorMessage: null,
+  fetchCentralErrorMessage: null,
 };
 
 function ValidateCentral(state, action, isLoading) {
   const entities = [...state.entities];
   const central = entities.find((central) => {
-    return central.nombreCentral === action.payload.nombreCentral;    
+    return central.nombreCentral === action.payload.nombreCentral;
   });
 
   if (central === undefined) {
@@ -39,7 +40,6 @@ function ValidateCentral(state, action, isLoading) {
   return entities;
 }
 
-
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_LIST_FULFILL:
@@ -57,7 +57,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        fetchListErrorMessage: action.payload,
+        fetchListErrorMessage: null,
+        fetchCentralErrorMessage: action.payload,
       };
     case FETCH_CONO_FULFILL:
       return {

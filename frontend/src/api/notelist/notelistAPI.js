@@ -1,6 +1,6 @@
 import { panicoServer } from "../panicoServer";
 
-export const fetchNoteListAPI = async (ip) => {  
+export const fetchNoteListAPI = async (ip) => {
   return panicoServer
     .get(`http://${ip}/api/notes`)
     .then((response) => {
@@ -11,7 +11,7 @@ export const fetchNoteListAPI = async (ip) => {
         return error.response.data;
       } else {
         throw new Error(
-          `Error al intentar obtener la información de la central IP: http://${ip}/api/notes`
+          `Error al intentar obtener la información de la central`
         );
       }
     });
@@ -27,9 +27,7 @@ export const fetchConoAPI = async (ip) => {
       if (error.response) {
         return error.response.data;
       } else {
-        throw new Error(
-          `Error al intentar obtener la información del cono`
-        );
+        throw new Error(`Error al intentar obtener la información del cono`);
       }
     });
 };

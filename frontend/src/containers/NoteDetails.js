@@ -12,13 +12,13 @@ function NoteDetails() {
 
   return (
     <>
-      <Navbar title="DETALLES" />
+      <Navbar title="DETALLES DE CONO" />
 
-      {getCono(3).map((cono) => (
+      {getCono(1).map((cono) => (
         <ListGroup
           horizontal="true"
           variant="flush"
-          style={{ color: "black", marginLeft: "1rem", marginRight: "1rem" }}
+          style={{ color: "black", marginLeft: "1rem", marginRight: "1rem", marginBottom: "1rem", marginTop:"1rem" }}
         >
           <ListGroup.Item>imei: {cono.imei}</ListGroup.Item>
           <ListGroup.Item>idComunicador: {cono.idComunicador}</ListGroup.Item>
