@@ -28,7 +28,7 @@
 
 window.centralesInfo = [
   {
-    nombre: "ARIEL PUTO",
+    nombre: "HOLA",
     ip: "localhost:8001"
   },
   {

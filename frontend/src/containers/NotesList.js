@@ -17,7 +17,6 @@ function NotesList() {
   let errorCentrales = centrales.entities.map(
     (error) => error.fetchCentralErrorMessage
   );
-  console.log(errorCentrales);
 
   return (
     <>

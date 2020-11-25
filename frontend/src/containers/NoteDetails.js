@@ -1,24 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import { ListGroup } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 function NoteDetails() {
   const currentCono = useSelector((state) => state.centrales.currentCono);
 
-  const getCono = (id) => {
-    return currentCono.filter((cono) => cono.id === id);
-  };
+  const [cono, setCono] = useState(null);
+
+  let { id } = useParams();
+
+  useEffect(() => {
+    let setearCono = currentCono.find((item) => item.id === +id);
+    setCono(setearCono);
+  }, [currentCono]);
+
+  // const getCono = () => {
+  //   return currentCono.filter((cono) => cono.id === id);
+  // };
 
   return (
     <>
       <Navbar title="DETALLES DE CONO" />
 
-      {getCono(1).map((cono) => (
+      {!!cono && (
         <ListGroup
           horizontal="true"
           variant="flush"
-          style={{ color: "black", marginLeft: "1rem", marginRight: "1rem", marginBottom: "1rem", marginTop:"1rem" }}
+          style={{
+            color: "black",
+            marginLeft: "1rem",
+            marginRight: "1rem",
+            marginBottom: "1rem",
+            marginTop: "1rem",
+          }}
         >
           <ListGroup.Item>imei: {cono.imei}</ListGroup.Item>
           <ListGroup.Item>idComunicador: {cono.idComunicador}</ListGroup.Item>
@@ -69,7 +85,7 @@ function NoteDetails() {
           <ListGroup.Item>routerCone: {cono.routerCone}</ListGroup.Item>
           <ListGroup.Item>fechaR0: {cono.fechaR0}</ListGroup.Item>
         </ListGroup>
-      ))}
+      )}
     </>
   );
 }
