@@ -10,16 +10,17 @@ function NoteDetails() {
   const [cono, setCono] = useState(null);
 
   let { id } = useParams();
+  
 
   useEffect(() => {
-    let setearCono = currentCono.find((item) => item.id === +id);
+    let setearCono = currentCono.find((item) => item.idComunicador === id);
     setCono(setearCono);
   }, [currentCono]);
 
   // const getCono = () => {
   //   return currentCono.filter((cono) => cono.id === id);
   // };
-
+  
   return (
     <>
       <Navbar title="DETALLES DE CONO" />

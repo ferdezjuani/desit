@@ -82,7 +82,7 @@ function NotesList() {
                         <td>{cono.idMesh}</td>
                         <td>
                           <Link
-                            to={`/central/${central.nombreCentral}/${cono.id}`}
+                            to={`/central/${central.nombreCentral}/${cono.idComunicador}`}
                           >
                             <VisibilityIcon className="view_icon" />
                           </Link>

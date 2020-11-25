@@ -14,6 +14,7 @@ export const fetchList = (ip, central) => async (dispatch) => {
   try {
     let res = await fetchNoteListAPI(ip);
     res.nombreCentral = central
+    console.log(res)
     dispatch({ type: FETCH_LIST_FULFILL, payload: res });
   } catch (error) {
     dispatch({ type: FETCH_LIST_REJECT, payload: error.message });
